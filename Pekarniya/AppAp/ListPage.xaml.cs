@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using goods_cashier = Pekarniya.BDkon.goods_cashier;
 
 
 namespace Pekarniya.App
@@ -38,8 +39,8 @@ namespace Pekarniya.App
 
         private void DeleteBTN_Click(object sender, RoutedEventArgs e)
         {
-            var ser = (sender as Button).DataContext as GC;
-            MessageBox.Show($"Вы действительно хотите удалить {ser.id_goods}?");
+            var ser = (sender as Button).DataContext as goods_cashier;
+            MessageBox.Show($"Вы дейтсвительно хотите удалить { ser.id_goods}?");
             ser.IsDelete = true;
             Class.pekBD.SaveChanges();
             ServicesLv.ItemsSource = Class.pekBD.goods_cashier.Where(i => i.IsDelete == false).ToList();
